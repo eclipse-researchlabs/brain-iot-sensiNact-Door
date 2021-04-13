@@ -1,0 +1,71 @@
+index: target/index.xml;name="app"
+
+-standalone: ${index}
+
+-runproperties: \
+	configurator.initial=file:./config.json, \
+	logback.configurationFile=file:./logback.xml, \
+	org.osgi.service.http.port=8899, \
+	org.eclipse.sensinact.gateway.security.jks.filename=datastore/keystore/keystore.jks, \
+    org.eclipse.sensinact.gateway.security.jks.password=sensiNact_team, \
+	felix.log.level=4
+	brainiot.door.host=192.168.52.50, \
+	brainiot.door.port=80, \
+	brainiot.door.path.get=/di_value/slot_0, \
+	brainiot.door.path.post=/do_value/slot_0, \
+	brainiot.door.auth=admin:00000000
+
+	
+-runrequires: \
+	bnd.identity;id='org.apache.felix.configurator',\
+	bnd.identity;id='org.osgi.service.component',\
+	bnd.identity;id='org.eclipse.sensinact.brainiot.sensinact-gateway',\
+	bnd.identity;id='org.eclipse.sensinact.brainiot.service.brainiot-service-impl',\
+	bnd.identity;id='org.eclipse.sensinact.brainiot.robotnik.door.door'
+	
+-runfw: org.apache.felix.framework
+-runee: JavaSE-1.8
+
+-resolve.effective: active
+-runbundles: \
+        ch.qos.logback.classic;version='[1.2.3,1.2.4)',\
+        ch.qos.logback.core;version='[1.2.3,1.2.4)',\
+        com.fasterxml.jackson.core.jackson-annotations;version='[2.9.8,2.9.9)',\
+        com.fasterxml.jackson.core.jackson-core;version='[2.9.8,2.9.9)',\
+        com.fasterxml.jackson.core.jackson-databind;version='[2.9.8,2.9.9)',\
+        com.paremus.brain.iot.eventing.api;version='[0.0.1,0.0.2)',\
+        com.paremus.brain.iot.eventing.impl;version='[0.0.1,0.0.2)',\
+        com.paremus.brain.iot.message.integrity.api;version='[0.0.1,0.0.2)',\
+        com.paremus.brain.iot.message.integrity.insecure.impl;version='[0.0.1,0.0.2)',\
+        org.eclipse.sensinact.brainiot.service.brainiot-service-api;version='[1.0.0,1.0.1)',\
+        org.eclipse.sensinact.brainiot.service.brainiot-service-impl;version='[1.0.0,1.0.1)',\
+        org.apache.aries.javax.jax.rs-api;version='[1.0.3,1.0.4)',\
+        org.apache.aries.jax.rs.whiteboard;version='[1.0.1,1.0.2)',\
+        org.apache.felix.configurator;version='[1.0.6,1.0.7)',\
+        org.apache.felix.http.jetty;version='[4.0.6,4.0.7)',\
+        org.apache.felix.http.servlet-api;version='[1.1.2,1.1.3)',\
+        org.apache.felix.scr;version='[2.1.10,2.1.11)',\
+        org.apache.servicemix.specs.annotation-api-1.3;version='[1.3.0,1.3.1)',\
+        org.eclipse.sensinact.brainiot.robotnik.door.door;version='[1.0.0,1.0.1)',\
+        org.eclipse.sensinact.brainiot.robotnik.door.door-api;version='[1.0.0,1.0.1)',\
+        org.eclipse.sensinact.brainiot.sensinact-gateway;version='[1.0.0,1.0.1)',\
+        org.osgi.service.cm;version='[1.6.0,1.6.1)',\
+        org.osgi.service.component;version='[1.4.0,1.4.1)',\
+        org.osgi.service.jaxrs;version='[1.0.0,1.0.1)',\
+        org.osgi.service.log;version='[1.4.0,1.4.1)',\
+        org.osgi.util.function;version='[1.1.0,1.1.1)',\
+        org.osgi.util.promise;version='[1.1.0,1.1.1)',\
+        org.osgi.util.pushstream;version='[1.0.0,1.0.1)',\
+        slf4j.api;version='[1.7.25,1.7.26)'
+
+    
+-runsystempackages: \
+	javax.xml.bind,\
+	javax.xml.bind.annotation,\
+	javax.validation,\
+	javax.validation.constraints,\
+	javax.crypto,\
+	javax.crypto.spec,\
+	com.sun.net.httpserver
+	
+-resolve: manual
