@@ -12,12 +12,19 @@ cache:
     directories:
      - .m2/repository
      
+install:
+  - mvn $MAVEN_CLI_OPTS validate
+
+script:
+  - mvn $MAVEN_CLI_OPTS verify
+     
 deploy:
   provider: script
   script: 
-    - mvn $MAVEN_CLI_OPTS $MAVEN_DEPLOY_OPTS validate clean package org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy -f door-api
-    - mvn $MAVEN_CLI_OPTS $MAVEN_DEPLOY_OPTS validate clean package org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy -f door 
-    - mvn $MAVEN_CLI_OPTS $MAVEN_DEPLOY_OPTS validate clean package org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy -f door-app 
+    #- mvn $MAVEN_CLI_OPTS $MAVEN_DEPLOY_OPTS validate clean package org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy -f door-api
+    #- mvn $MAVEN_CLI_OPTS $MAVEN_DEPLOY_OPTS validate clean package org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy -f door 
+    #- mvn $MAVEN_CLI_OPTS $MAVEN_DEPLOY_OPTS validate clean package org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy -f door-app 
+    - mvn $MAVEN_CLI_OPTS $MAVEN_DEPLOY_OPTS validate clean package org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy
   on:
     branch: main
 
